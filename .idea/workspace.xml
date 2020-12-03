@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7d913ff-fa6c-4ef1-a1bf-14fe3da56d26" name="Default Changelist" comment="" />
+    <list default="true" id="b7d913ff-fa6c-4ef1-a1bf-14fe3da56d26" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +37,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/projekti-s20" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1kjiHv9uh1sRGHzdWAqz92BJTPa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -80,7 +88,7 @@
       <workItem from="1606807710142" duration="5216000" />
       <workItem from="1606816056497" duration="4391000" />
       <workItem from="1606899179312" duration="4504000" />
-      <workItem from="1607003305811" duration="3891000" />
+      <workItem from="1607003305811" duration="4689000" />
     </task>
     <servers />
   </component>
@@ -125,5 +133,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607003934610" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607007984050">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607007984050" />
   </component>
 </project>
