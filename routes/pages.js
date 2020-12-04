@@ -10,19 +10,19 @@ router.get('/', (req, res, next) => {
     let user = req.session.user;
     // If there is a session named user that means the use is logged in. so we redirect him to home page by using /home route below
     if(user) {
-        res.redirect('/main');
+        res.redirect('/home');
         return;
     }
     // IF not we just send the index page.
-    res.render('index', {title:"Word Domination!"});
+    res.render('index', {title:"My application"});
 })
 
 // Get home page
-router.get('/main', (req, res, next) => {
+router.get('/home', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('main', {opp:req.session.opp, name:user.fullname});
+        res.render('home', {opp:req.session.opp, name:user.fullname});
         return;
     }
     res.redirect('/');
@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.redirect('/main');
+            res.redirect('/home');
         }else {
             // if the login function returns null send this error message back to the user.
             res.send('Username/Password incorrect!');

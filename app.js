@@ -9,14 +9,17 @@ app.use(express.urlencoded( { extended : false}));
 
 
 // Serve static files. CSS, Images, JS files ... etc
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/static', express.static(path.join(__dirname, 'public')))
+
 
 
 // Template engine. PUG
-app.set('views', path.join(__dirname, '/index'));
-//app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-/* session
+// session
 app.use(session({
     secret:'youtube_video',
     resave: false,
@@ -24,7 +27,7 @@ app.use(session({
     cookie: {
         maxAge: 60 * 1000 * 30
     }
-}));*/
+}));
 
 
 // Routers
