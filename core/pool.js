@@ -7,7 +7,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root', // use your mysql username.
-    password: 'salasanasi', // user your mysql password.
+    password: 'salasana', // user your mysql password.
     database: 'www'
 });
 

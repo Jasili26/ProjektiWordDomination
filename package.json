@@ -19,6 +19,6 @@
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.4"
   }
 }
