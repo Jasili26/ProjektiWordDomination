@@ -1,0 +1,27 @@
+form#rekisterointilomake(method="post" action="/register")
+    h2 Rekisteröidy
+    table
+        tr
+            td Kayttajatunnus
+            td
+                input(type="text" name="username")
+        tr
+            td Nimi
+            td
+                input(type="text" name="fullname")
+        tr
+
+        td Sähköposti
+            td
+                input(type="text" name="sahkoposti")
+        tr
+
+            td Salasana
+            td
+                input(type="password" name="password")
+
+        tr
+            td
+            td
+                input(type="submit" value="Register")
+
