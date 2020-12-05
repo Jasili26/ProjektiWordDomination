@@ -1,19 +1,19 @@
 const util = require('util');
 const mysql = require('mysql');
-/**
- * Connection to the database.
- *  */
+
+//Databaseen yhdistämistietoja
+
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
-    user: 'root', // use your mysql username.
-    password: 'salasanasi', // user your mysql password.
-    database: 'www'
+    user: 'root',
+    password: '*********',
+    database: 'projektiDB'
 });
 
 pool.getConnection((err, connection) => {
     if(err)
-        console.error("Something went wrong connecting to the database ...");
+        console.error("Databaseen ei saada yhteyttä, tiedoissa jotain vikaa?");
 
     if(connection)
         connection.release();

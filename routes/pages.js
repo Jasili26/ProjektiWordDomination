@@ -2,22 +2,22 @@ const express = require('express');
 const User = require('../core/user');
 const router = express.Router();
 
-// create an object from the class User in the file core/user.js
+
 const user = new User();
 
-// Get the index page
+// näytä etusivu sivun avautuessa
 router.get('/', (req, res, next) => {
     let user = req.session.user;
-    // If there is a session named user that means the use is logged in. so we redirect him to home page by using /home route below
+    // Jos käyttäjä on jäänyt kirjautuneena sisään hän siirtyy suoraan etusivulle ilman kirjautumisvaatimusta
     if(user) {
         res.redirect('/home');
         return;
     }
-    // IF not we just send the index page.
-    res.render('index', {title:"My application"});
+    // jos ei ole kirjautunut näytetään etusivu index
+    res.render('index', {title:"Word Domination"});
 })
 
-// Get home page
+// näytä kotisivu
 router.get('/home', (req, res, next) => {
     let user = req.session.user;
 
@@ -28,39 +28,38 @@ router.get('/home', (req, res, next) => {
     res.redirect('/');
 });
 
-// Post login data
+// Postaa kirjautumis data
 router.post('/login', (req, res, next) => {
-    // The data sent from the user are stored in the req.body object.
-    // call our login function and it will return the result(the user data).
+
     user.login(req.body.username, req.body.password, function(result) {
         if(result) {
-            // Store the user data in a session.
+            // varastoidaan kirjautumisdata
             req.session.user = result;
             req.session.opp = 1;
-            // redirect the user to the home page.
             res.redirect('/home');
         }else {
-            // if the login function returns null send this error message back to the user.
-            res.send('Username/Password incorrect!');
+            // jos käyttäjätunnus ja salasana eivät matchaa
+            res.send('Käyttäjätunnus ja salasana eivät täsmää! Kokeile uudestaan.');
         }
     })
 
 });
 
 
-// Post register data
+// Postaa rekisteröinti tiedot
 router.post('/register', (req, res, next) => {
-    // prepare an object containing all user inputs.
+    // katsotaan käyttäjän syöttämät tiedot kenttiin
     let userInput = {
         username: req.body.username,
         fullname: req.body.fullname,
+        sahkoposti: req.body.sahkoposti,
         password: req.body.password
     };
-    // call create function. to create a new user. if there is no error this function will return it's id.
+    // kutsutaan käyttäjän luonti funktiota
     user.create(userInput, function(lastId) {
-        // if the creation of the user goes well we should get an integer (id of the inserted user)
+        // käyttäjälle id
         if(lastId) {
-            // Get the user data by it's id. and store it in a session.
+            // käyttäjä data idstä ja varastoidaan se
             user.find(lastId, function(result) {
                 req.session.user = result;
                 req.session.opp = 0;
@@ -68,18 +67,18 @@ router.post('/register', (req, res, next) => {
             });
 
         }else {
-            console.log('Error creating a new user ...');
+            console.log('uuden käyttäjän luomisessa virhe');
         }
     });
 
 });
 
 
-// Get loggout page
+// kirjaudu ulos
 router.get('/loggout', (req, res, next) => {
-    // Check if the session is exist
+    // onko kirjautunut sisään?
     if(req.session.user) {
-        // destroy the session and redirect the user to the index page.
+        // kirjataan käyttäjän sessio loppuneeksi ja ohjataan alkuun
         req.session.destroy(function() {
             res.redirect('/');
         });

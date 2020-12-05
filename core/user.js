@@ -5,15 +5,15 @@ const bcrypt = require('bcrypt');
 function User() {};
 
 User.prototype = {
-    // Find the user data by id or username.
+    // etsi käyttäjästä dataa idn tai kayttajatunnuksen avulla
     find : function(user = null, callback)
     {
-        // if the user variable is defind
+
         if(user) {
-            // if user = number return field = id, if user = string return field = username.
+
             var field = Number.isInteger(user) ? 'id' : 'username';
         }
-        // prepare the sql query
+        // db kyselyn alustus
         let sql = `SELECT * FROM users WHERE ${field} = ?`;
 
 
@@ -28,45 +28,45 @@ User.prototype = {
         });
     },
 
-    // This function will insert data into the database. (create a new user)
-    // body is an object
+    // funktio joka syöttää dataa databaseen tunnuksen tekemisestä
+
     create : function(body, callback)
     {
 
         var pwd = body.password;
-        // Hash the password before insert it into the database.
+        // tietosuojataan salasana ja rikotaan se tietokantaan
         body.password = bcrypt.hashSync(pwd,10);
 
-        // this array will contain the values of the fields.
+
         var bind = [];
-        // loop in the attributes of the object and push the values into the bind array.
+
         for(prop in body){
             bind.push(body[prop]);
         }
-        // prepare the sql query
-        let sql = `INSERT INTO users(username, fullname, password) VALUES (?, ?, ?)`;
-        // call the query give it the sql string and the values (bind array)
+        // lisätään käyttäjän syötetyt datat users tauluun
+        let sql = `INSERT INTO users(username, fullname, email, password) VALUES (?, ?, ?, ?)`;
+
         pool.query(sql, bind, function(err, result) {
             if(err) throw err;
-            // return the last inserted id. if there is no error
+            // katsotaan edellinen id
             callback(result.insertId);
         });
     },
 
     login : function(username, password, callback)
     {
-        // find the user data by his username.
+        // etsitään käyttäjä dataa käyttäjätunnuksesta
         this.find(username, function(user) {
-            // if there is a user by this username.
+            // jos on samanniminen käyttäjä
             if(user) {
-                // now we check his password.
+                // katotaan salasanaa
                 if(bcrypt.compareSync(password, user.password)) {
-                    // return his data.
+                    // näytä data
                     callback(user);
                     return;
                 }
             }
-            // if the username/password is wrong then return null.
+            // jos käyttäjätunnus ja salasana ei täsmää
             callback(null);
         });
 
