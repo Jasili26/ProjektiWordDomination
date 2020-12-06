@@ -23,8 +23,12 @@ router.get('/home', (req, res, next) => {
 
     if(user) {
         res.render('home', {opp:req.session.opp, name:user.fullname});
+
         return;
     }
+
+
+
     res.redirect('/');
 });
 
@@ -59,20 +63,19 @@ router.post('/register', (req, res, next) => {
     user.create(userInput, function(lastId) {
         // käyttäjälle id
         if(lastId) {
-            // käyttäjä data idstä ja varastoidaan se
+           //  käyttäjä data idstä ja varastoidaan se
             user.find(lastId, function(result) {
                 req.session.user = result;
-                req.session.opp = 0;
+               req.session.opp = 0;
                 res.redirect('/home');
             });
 
         }else {
-            console.log('uuden käyttäjän luomisessa virhe');
+           console.log('uuden käyttäjän luomisessa virhe');
         }
     });
 
 });
-
 
 // kirjaudu ulos
 router.get('/loggout', (req, res, next) => {
@@ -84,5 +87,43 @@ router.get('/loggout', (req, res, next) => {
         });
     }
 });
+
+
+
+//tarinan luominen
+router.post('/newstory', (req, res, next) => {
+    // katsotaan käyttäjän syöttämät tiedot kenttiin
+    let userInput = {
+        otsikko: req.body.otsikko,
+        genre: req.body.genre,
+        teaser: req.body.teaser
+    };
+
+    // kutsutaan käyttäjän luonti funktiota
+    user.story(userInput, function(storyID) {
+        // Tarinalle id
+        if(storyID) {
+            // ohjataan käyttäjä takaisin tarinan luomisen jälkeen
+            user.find(storyID, function(result) {
+
+                res.redirect('/home');
+            });
+
+        }else {
+            console.log('Tarinan luomisessa virhe');
+        }
+    });
+
+});
+
+//navbar ohjaukset
+
+
+
+
+
+
+
+
 
 module.exports = router;

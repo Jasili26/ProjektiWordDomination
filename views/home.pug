@@ -1,22 +1,39 @@
-extends layout
+extends layouthome
+
+
+
 
 mixin message(opp, name)
     if(opp)
         h1.greeting Moikka!
             span= name
-        p TÄSSÄ ON TARINA VOIT MUOKATA SITÄ HAHHAHAHA
+
+
+
     else
         h1.greeting Tervetuloa
             span= name
 
-        p TARVIIKS UUTENA JOTAIN OHJEISTUSTA?!?!
+
+
 
 
 append links
     li(style="float: right;")
         a(href="/loggout") Kirjaudu Ulos
 
+
+
 block content
     .dashboard
         .user
             +message(opp, name)
+
+            include newstory
+
+
+
+
+
+
+

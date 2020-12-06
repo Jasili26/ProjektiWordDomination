@@ -4,6 +4,7 @@ const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
 
+
 // for body parser. to collect data that sent from the client.
 app.use(express.urlencoded( { extended : false}));
 
@@ -51,5 +52,6 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000...');
 });
+
 
 module.exports = app;

@@ -28,6 +28,7 @@ User.prototype = {
         });
     },
 
+
     // funktio joka syöttää dataa databaseen tunnuksen tekemisestä
 
     create : function(body, callback)
@@ -66,11 +67,31 @@ User.prototype = {
                     return;
                 }
             }
-            // jos käyttäjätunnus ja salasana ei täsmää
+            // jos salasana ja käyttäjätunnus ei matchaa
             callback(null);
         });
 
-    }
+    },
+    story : function(body, callback)
+    {
+
+
+
+
+        var bind = [];
+
+        for(prop in body){
+            bind.push(body[prop]);
+        }
+        // lisätään käyttäjän syötetyt datat story tauluun + ready = 0(ei valmis)
+        let sql = `INSERT INTO story(header, genre, teaser, ready) VALUES (?, ?, ?, 0)`;
+
+        pool.query(sql, bind, function(err, result) {
+            if(err) throw err;
+            // katsotaan edellinen id
+            callback(result.insertId);
+        });
+    },
 
 }
 

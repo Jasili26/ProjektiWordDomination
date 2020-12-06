@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 
 body
 {
-    background-color: #F0F0F0;
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
 }
 .table, .table td, .table tr
 {
@@ -202,17 +205,131 @@ h1 {
 
 #taustavideo {
     right: 0;
-    min-width: 100%;
+    width: 100%;
     height: 100%;
+    min-height: 100%;
 }
 
 
 #esittely {
     background-color: #000c10;
     position: absolute;
-    left: 0px;
     width: 39vw;
-    height: 100%;
+    height: 98%;
     color: white;
+}
+
+
+#kirjautumislomake {
+
+}
+
+#rekisterointilomake {
+
+}
+
+@media (max-width: 650px) {
+    #esittely {
+        width: 100%;
+        height: 40%;
+        background-color: #0b6e4f;
+        top: 0px;
+        left: 0px;
+    }
+
+    #taustavideo {
+        display: none;
+    }
+
+    #otsikko {
+        text-align: center;
+        position: relative;
+        font-size: 17px;
+        width: 80%;
+        top: 25%
+    }
+
+    #teksti {
+        background-color: #0b6e4f;
+        padding: 15px;
+        text-align: center;
+        font-size: 15px;
+        position: absolute;
+        top: 50%;
+        opacity: 1;
+    }
+
+    #oikea {
+        width: 100%;
+        height: 100%;
+        top: 40%;
+    }
+
+    #myForm {
+        width: 93%;
+        max-height: 95%;
+        padding: 30px;
+        border: none;
+        background-color: white;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        position: absolute;
+        top: 35%;
+    }
+
+    #kirjautuminen {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+
+    #kirjaudu {
+        width: 80%;
+        opacity: 1;
+        top: 340px;
+        position: absolute;
+        margin: 0;
+        left: 10%;
+    }
+
+    #rekisteroidy {
+        width: 80%;
+        opacity: 1;
+        top: 405px;
+        position: absolute;
+        margin: 0;
+        left: 10%;
+    }
+
+    .form-container {
+        margin: 8%;
+    }
+
+    #rekisteroidy:hover, #kirjaudu:hover {
+        opacity: 0.8;
+    }
+
+    #submitnappi, #suljenappi {
+        opacity: 1;
+    }
+
+    #submitnappi:hover, #suljenappi:hover {
+        opacity: 0.8;
+    }
+    #kirjautumislomake {
+        top: 100%;
+        left: 5%;
+        position: absolute;
+    }
+
+    #rekisterointilomake {
+        top: 50%;
+        left: 5%;
+        position: absolute;
+    }
+
+
 }
 
