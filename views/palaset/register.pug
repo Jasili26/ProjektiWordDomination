@@ -4,24 +4,24 @@ form#rekisterointilomake(method="post" action="/register")
         tr
             td Kayttajatunnus
             td
-                input(type="text" name="username")
+                input(type="text" name="username" required='')
         tr
             td Nimi
             td
-                input(type="text" name="fullname")
+                input(type="text" name="fullname" required='')
         tr
 
         td Sähköposti
             td
-                input(type="text" name="sahkoposti")
+                input(type="text" name="sahkoposti" pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' required='')
         tr
 
             td Salasana
             td
-                input(type="password" name="password")
+                input(type="password" name="password" pattern='.{8,}' required='' oninvalid="setCustomValidity('Salasanan täytyy sisältää vähintään kahdeksan merkkiä')" oninput="setCustomValidity('')")
 
         tr
             td
             td
-                input(type="submit" value="Register")
+                input(type="submit" value="Rekisteröidy")
 

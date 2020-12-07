@@ -99,7 +99,7 @@
       <workItem from="1606899179312" duration="4504000" />
       <workItem from="1607003305811" duration="28826000" />
       <workItem from="1607175969585" duration="49017000" />
-      <workItem from="1607350422622" duration="86000" />
+      <workItem from="1607350422622" duration="730000" />
     </task>
     <servers />
   </component>
@@ -168,10 +168,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="255" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607077910884" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1607350508122">
+    <state x="461" y="165" key="SettingsEditor" timestamp="1607350705493">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607350508122" />
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607350705493" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607008285084">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

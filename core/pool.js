@@ -7,7 +7,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root',
-    password: '********',
+    password: 'Pandabear69',
     database: 'projektiDB'
 });
 

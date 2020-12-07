@@ -4,12 +4,12 @@ form#kirjautumislomake(method="post" action="/login")
         tr
             td Käyttäjätunnus
             td
-                input(type="text" name="username")
+                input(type="text" name="username" required='')
         tr
             td Salasana
             td
-                input(type="password" name="password")
+                input(type="password" name="password" required='')
         tr
             td
             td
-                input(type="submit" value="Login")
+                input(type="submit" value="Kirjaudu sisään")
