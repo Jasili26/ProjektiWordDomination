@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 });
 
 // Asetetaan kuuntelemaan porttia
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('Server is running on port 3000...');
 });
 
