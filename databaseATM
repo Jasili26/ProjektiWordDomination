@@ -17,6 +17,6 @@ header varchar(100) NOT NULL,
 genre varchar(100) NOT NULL,
 teaser varchar(200) NOT NULL,
 text varchar(1000),
-ready tinyint(1);
+ready tinyint(1),
 PRIMARY KEY (id)
 );
