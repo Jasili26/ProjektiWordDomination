@@ -32,6 +32,53 @@ router.get('/home', (req, res, next) => {
     res.redirect('/');
 });
 
+//näytä uusi tarina sivusto
+router.get('/new', (req, res, next) => {
+    let user = req.session.user;
+
+    if(user) {
+        res.render('new', {opp:req.session.opp, name:user.fullname});
+
+        return;
+    }
+
+
+
+    res.redirect('/');
+});
+
+
+
+//lue tarinoita sivusto
+router.get('/read', (req, res, next) => {
+    let user = req.session.user;
+
+    if(user) {
+        res.render('read', {opp:req.session.opp, name:user.fullname});
+
+        return;
+    }
+
+
+
+    res.redirect('/');
+});
+
+//kirjoitus välilehti
+router.get('/write', (req, res, next) => {
+    let user = req.session.user;
+
+    if(user) {
+        res.render('write', {opp:req.session.opp, name:user.fullname});
+
+        return;
+    }
+
+
+
+    res.redirect('/');
+});
+
 // Postaa kirjautumis data
 router.post('/login', (req, res, next) => {
 
@@ -90,6 +137,11 @@ router.get('/loggout', (req, res, next) => {
 
 
 
+
+
+
+
+
 //tarinan luominen
 router.post('/newstory', (req, res, next) => {
     // katsotaan käyttäjän syöttämät tiedot kenttiin
@@ -116,7 +168,7 @@ router.post('/newstory', (req, res, next) => {
 
 });
 
-//navbar ohjaukset
+
 
 
 

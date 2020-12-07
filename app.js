@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
+const storyRouter = require('./routes/story');
 const app = express();
 
 
@@ -33,6 +34,7 @@ app.use(session({
 
 // Routers
 app.use('/', pageRouter);
+app.use('/', storyRouter);
 
 
 // Errors => page not found 404
