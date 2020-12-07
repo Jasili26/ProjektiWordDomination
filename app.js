@@ -2,15 +2,14 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
-const storyRouter = require('./routes/story');
 const app = express();
 
 
-// for body parser. to collect data that sent from the client.
+// Kerätään käyttäjältä lähetettyjä tietoja
 app.use(express.urlencoded( { extended : false}));
 
 
-// Serve static files. CSS, Images, JS files ... etc
+// Jaetaan tiedostot publc kansiosta käyttöön
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/static', express.static(path.join(__dirname, 'public')))
@@ -21,9 +20,9 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// session
+// sessiot
 app.use(session({
-    secret:'youtube_video',
+    secret:'kouluonkivaa',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -32,25 +31,24 @@ app.use(session({
 }));
 
 
-// Routers
+// Routersit
 app.use('/', pageRouter);
-app.use('/', storyRouter);
 
 
-// Errors => page not found 404
+// Virheilmoituksen asettaminen
 app.use((req, res, next) =>  {
     var err = new Error('Page not found');
     err.status = 404;
     next(err);
 })
 
-// Handling errors (send them to the client)
+// Virheiden käsittely. Lähetetään käyttäjälle.
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.send(err.message);
 });
 
-// Setting up the server
+// Asetetaan kuuntelemaan porttia
 app.listen(3000, () => {
     console.log('Server is running on port 3000...');
 });
