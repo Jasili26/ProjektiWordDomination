@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     let user = req.session.user;
     // Jos käyttäjä on jäänyt kirjautuneena sisään hän siirtyy suoraan etusivulle ilman kirjautumisvaatimusta
     if(user) {
-        res.redirect('./home');
+        res.redirect('/home');
         return;
     }
     // jos ei ole kirjautunut näytetään etusivu index
@@ -18,11 +18,11 @@ router.get('/', (req, res, next) => {
 })
 
 // näytä kotisivu
-router.get('./home', (req, res, next) => {
+router.get('/home', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('home', {opp:req.session.opp, name:user.fullname});
+        res.render('.home', {opp:req.session.opp, name:user.fullname});
 
         return;
     }
@@ -33,11 +33,11 @@ router.get('./home', (req, res, next) => {
 });
 
 //näytä uusi tarina sivusto
-router.get('./new', (req, res, next) => {
+router.get('/new', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('new', {opp:req.session.opp, name:user.fullname});
+        res.render('.new', {opp:req.session.opp, name:user.fullname});
 
         return;
     }
@@ -50,11 +50,11 @@ router.get('./new', (req, res, next) => {
 
 
 //lue tarinoita sivusto
-router.get('./read', (req, res, next) => {
+router.get('/read', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('read', {opp:req.session.opp, name:user.fullname});
+        res.render('.read', {opp:req.session.opp, name:user.fullname});
 
         return;
     }
@@ -65,11 +65,11 @@ router.get('./read', (req, res, next) => {
 });
 
 //kirjoitus välilehti
-router.get('./write', (req, res, next) => {
+router.get('/write', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('write', {opp:req.session.opp, name:user.fullname});
+        res.render('.write', {opp:req.session.opp, name:user.fullname});
 
         return;
     }
@@ -80,7 +80,7 @@ router.get('./write', (req, res, next) => {
 });
 
 // Postaa kirjautumis data
-router.post('./login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
 
     user.login(req.body.username, req.body.password, function(result) {
         if(result) {
@@ -98,7 +98,7 @@ router.post('./login', (req, res, next) => {
 
 
 // Postaa rekisteröinti tiedot
-router.post('./register', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     // katsotaan käyttäjän syöttämät tiedot kenttiin
     let userInput = {
         username: req.body.username,
@@ -125,7 +125,7 @@ router.post('./register', (req, res, next) => {
 });
 
 // kirjaudu ulos
-router.get('./loggout', (req, res, next) => {
+router.get('/loggout', (req, res, next) => {
     // onko kirjautunut sisään?
     if(req.session.user) {
         // kirjataan käyttäjän sessio loppuneeksi ja ohjataan alkuun
@@ -143,7 +143,7 @@ router.get('./loggout', (req, res, next) => {
 
 
 //tarinan luominen
-router.post('./newstory', (req, res, next) => {
+router.post('/newstory', (req, res, next) => {
     // katsotaan käyttäjän syöttämät tiedot kenttiin
     let userInput = {
         otsikko: req.body.otsikko,
