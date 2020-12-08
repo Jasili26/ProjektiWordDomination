@@ -21,7 +21,7 @@ app2.use(bodyParser.json());
 
 // if production redirect to https
 if (process.env.NODE_ENV === 'production') {
-    app.use((req, res, next) => {
+    app2.use((req, res, next) => {
         if (req.secure) {
             // request was via https, so do no special handling
             next();
