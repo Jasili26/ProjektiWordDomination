@@ -3,6 +3,40 @@ const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
 const app2 = express();
+const fs      = require('fs');
+const https = require('https');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+
+app2.enable('trust proxy');
+
+app2.use(cors());
+// parse application/x-www-form-urlencoded
+app2.use(bodyParser.urlencoded({extended: false}));
+// parse application/json
+app2.use(bodyParser.json());
+
+
+
+// if production redirect to https
+if (process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.secure) {
+            // request was via https, so do no special handling
+            next();
+        } else {
+            // if express app run under proxy with sub path URL
+            // e.g. http://www.myserver.com/app/
+            // then, in your .env, set PROXY_PASS=/app
+            // Adapt to your proxy settings!
+            const proxypath = process.env.PROXY_PASS || '';
+            // request was via http, so redirect to https
+            console.log(`https://${req.headers.host}${proxypath}${req.url}`);
+            res.redirect(301, `https://${req.headers.host}${proxypath}${req.url}`);
+        }
+    });
+}
 
 
 // Kerätään käyttäjältä lähetettyjä tietoja
@@ -53,5 +87,19 @@ app2.listen(3001, () => {
     console.log('Server is running on port 3001...');
 });
 
+// if production, add https, with this if no need to install certs locally
+if (process.env.NODE_ENV === 'production') {
+    const sslkey = fs.readFileSync('/etc/pki/tls/private/ca.key');
+    const sslcert = fs.readFileSync('/etc/pki/tls/certs/ca.crt');
+    const options = {
+        key: sslkey,
+        cert: sslcert
+    };
+    https.createServer(options, app2).listen(8000,
+        () => console.log(`HTTPS on port ${8000}!`)); //https traffic
+}
+
+
 
 module.exports = app2;
+
