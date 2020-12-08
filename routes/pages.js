@@ -29,7 +29,7 @@ router.get('./home', (req, res, next) => {
 
 
 
-    res.redirect('/');
+    res.redirect('./');
 });
 
 //näytä uusi tarina sivusto
@@ -44,7 +44,7 @@ router.get('./new', (req, res, next) => {
 
 
 
-    res.redirect('/');
+    res.redirect('./');
 });
 
 
@@ -61,7 +61,7 @@ router.get('./read', (req, res, next) => {
 
 
 
-    res.redirect('/');
+    res.redirect('./');
 });
 
 //kirjoitus välilehti
@@ -76,7 +76,7 @@ router.get('./write', (req, res, next) => {
 
 
 
-    res.redirect('/');
+    res.redirect('./');
 });
 
 // Postaa kirjautumis data
