@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 })
 
 // näytä kotisivu
-router.get('/home', (req, res, next) => {
+router.get('./home', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
@@ -87,7 +87,7 @@ router.post('./login', (req, res, next) => {
             // varastoidaan kirjautumisdata
             req.session.user = result;
             req.session.opp = 1;
-            res.redirect('/home');
+            res.redirect('./home');
         }else {
             // jos käyttäjätunnus ja salasana eivät matchaa
             res.send('Käyttäjätunnus ja salasana eivät täsmää! Kokeile uudestaan.');
@@ -114,7 +114,7 @@ router.post('./register', (req, res, next) => {
             user.find(lastId, function(result) {
                 req.session.user = result;
                req.session.opp = 0;
-                res.redirect('/home');
+                res.redirect('./home');
             });
 
         }else {
@@ -158,7 +158,7 @@ router.post('./newstory', (req, res, next) => {
             // ohjataan käyttäjä takaisin tarinan luomisen jälkeen
             user.find(storyID, function(result) {
 
-                res.redirect('/home');
+                res.redirect('./home');
             });
 
         }else {
