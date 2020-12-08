@@ -6,7 +6,7 @@ const router = express.Router();
 const user = new User();
 
 // näytä etusivu sivun avautuessa
-router.get('/', (req, res, next) => {
+router.get('./', (req, res, next) => {
     let user = req.session.user;
     // Jos käyttäjä on jäänyt kirjautuneena sisään hän siirtyy suoraan etusivulle ilman kirjautumisvaatimusta
     if(user) {
