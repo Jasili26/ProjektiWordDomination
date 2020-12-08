@@ -95,8 +95,8 @@ if (process.env.NODE_ENV === 'production') {
         key: sslkey,
         cert: sslcert
     };
-    https.createServer(options, app2).listen(8000,
-        () => console.log(`HTTPS on port ${8000}!`)); //https traffic
+    https.createServer(options, app2).listen(8001,
+        () => console.log(`HTTPS on port ${8001}!`)); //https traffic
 }
 
 
